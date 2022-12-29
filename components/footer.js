@@ -16,6 +16,7 @@ const Footer = () => {
           Todos los derechos reservados {new Date().getFullYear()}
         </p>
       </div>
+      <p className={styles.desing}>Diseñado por Arnold Gallegos &copy;</p>
     </footer>
   );
 };
