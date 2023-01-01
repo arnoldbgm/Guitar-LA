@@ -22,6 +22,7 @@
 .navegacion {
   margin-top: 5rem;
   display: flex;
+  align-items: center;
   gap: 2rem;
 }
 
@@ -42,6 +43,7 @@
 }
 
 .navegacion a:hover,
+.carrito,
 .activate {
   color: rgb(246, 206, 5) !important;
   font-size: 1.8rem !important;

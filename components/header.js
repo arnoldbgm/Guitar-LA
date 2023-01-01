@@ -42,6 +42,15 @@ const Header = () => {
           >
             Tienda
           </Link>
+          <Link href='/carrito'>
+            <Image
+              className={styles.carrito}
+              src='/img/carrito.svg'
+              alt='Carrito'
+              width={30}
+              height={25}
+            />
+          </Link>
         </nav>
       </div>
     </header>

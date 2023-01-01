@@ -4,13 +4,42 @@ import Link from 'next/link';
 import styles from '../../styles/guitarras.module.css';
 import Layout from '../../components/layout';
 import Pagina404 from '../404';
+import { useState } from 'react';
+import Swal from 'sweetalert2';
 
-const Producto = ({ guitarras }) => {
+const Producto = ({
+  guitarras,
+  agregarCarrito,
+  eliminarProducto,
+  actualizarCantidad,
+}) => {
+  const [cantidad, setCantidad] = useState(0);
   const router = useRouter();
   const path = router.query.url;
   const guitarrasFinal = guitarras.filter(
     (guitarra) => guitarra.attributes.url === path
   );
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (cantidad < 1) {
+      Swal.fire('Debes de escoger una cantidad valida');
+      return;
+    }
+
+    console.log(guitarrasFinal);
+
+    const guitarrasSeleccionadas = {
+      id: guitarrasFinal[0].id,
+      imagen:
+        guitarrasFinal[0].attributes.imagen.data.attributes.formats.medium.url,
+      nombre: guitarrasFinal[0].attributes.nombre,
+      precio: guitarrasFinal[0].attributes.precio,
+      cantidad,
+    };
+    agregarCarrito(guitarrasSeleccionadas);
+  };
+
   return (
     <>
       {guitarrasFinal.length > 0 ? (
@@ -33,6 +62,22 @@ const Producto = ({ guitarras }) => {
               <p className={styles.precio}>
                 ${guitarrasFinal[0].attributes.precio}
               </p>
+
+              <form className={styles.formulario} onSubmit={handleSubmit}>
+                <label htmlFor='cantidad'>Cantidad: </label>
+                <select
+                  id='cantidad'
+                  onChange={(e) => setCantidad(parseInt(e.target.value))}
+                >
+                  <option value={0}>--Seleccione--</option>
+                  <option value={1}>1</option>
+                  <option value={2}>2</option>
+                  <option value={3}>3</option>
+                  <option value={4}>4</option>
+                  <option value={5}>5</option>
+                </select>
+                <input type='submit' value='Agregar al carrito' />
+              </form>
             </div>
           </div>
         </Layout>

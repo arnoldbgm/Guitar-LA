@@ -45,3 +45,31 @@
 .enlace:hover {
   background-color: var(--primary);
 }
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+}
+
+.formulario select {
+  padding: 0.5rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.formulario input {
+  margin-top: 1.5rem;
+  background-color: var(--primary);
+  border: none;
+  padding: 1.2rem;
+  border-radius: 12px;
+  color: #fff;
+}
+
+.formulario input:hover{
+  cursor: pointer;
+}
+
+.formulario input:active {
+  background-color: black;
+}
